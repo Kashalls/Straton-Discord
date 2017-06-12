@@ -17,7 +17,7 @@ exports.run = (client, message, args) => {
     const vainglory = new Vainglory(config.vaingloryAPI, options);
 
     if (args.length === 0) {
-        return message.channel.send('Please provide me a playerID. `EX: 6abb30de-7cb8-11e4-8bd3-06eb725f8a76`').then((sent) => {
+        return message.channel.send('Use the command like this: ' + config.prefix + 'vainglory name/id Username/ID').then((sent) => {
             sent.delete(15000);
         })
     }

@@ -1,7 +1,6 @@
 exports.name = "profile";
 exports.run = (client, message, args) => {
 
-return message.reply('the profile command has been put on hold till further notice.');
     var Canvas = require('canvas');
     const r = require('snekfetch');
 
