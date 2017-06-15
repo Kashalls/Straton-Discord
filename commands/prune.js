@@ -5,13 +5,13 @@ exports.run = (client, message, args) => {
         if (message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) {
 
             if (!args) {
-                return message.channel.send(`:grey_question: Please provide a value: /prune <2-100>`);
+                return message.channel.send(`:grey_question: Please provide a value: /prune <2-100> (Only works for messages less than 14 days old.)`);
             } else {
                 let value = isNaN(args[0]);
                 if (value == false) {
                     if (args[0] >= 5 && args[0] <= 100) {
-                        message.channel.bulkDelete(args[0]).then(messages => {
-                        return message.channel.send(`:checkered_flag: ${args} messages were cleared out.`);
+                        message.channel.bulkDelete(args[0], true).then(messages => {
+                        return message.channel.send(`:checkered_flag: ${args} messages should have been cleared out.`);
                         })
                     } else {
                         return message.channel.send(`:warning: Your value has to be between 5 and 100.`);
