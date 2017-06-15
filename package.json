@@ -5,17 +5,11 @@
   "main": "bot.js",
   "dependencies": {
     "bin": "^0.0.0",
-    "canvas": "^1.6.5",
-    "cleverbot.io": "^1.0.4",
     "discord.js": "^11.1.0",
-    "ffmpeg-binaries": "^3.2.2-3",
     "fs": "^0.0.1-security",
     "node-opus": "^0.2.6",
-    "opusscript": "0.0.3",
     "snekfetch": "^3.1.8",
-    "vainglory": "^1.2.0-beta",
-    "youtube-dl": "^1.11.1",
-    "ytdl-core": "^0.14.1"
+    "vainglory": "^1.2.0-beta"
   },
   "devDependencies": {},
   "scripts": {
