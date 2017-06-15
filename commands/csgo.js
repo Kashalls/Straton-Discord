@@ -41,40 +41,33 @@ exports.run = (client, message, args) => {
             }
         });
     }
+
     if (!args) {
-        return message.channel.send(`
-[CSGO HELP]
-    Allows any user to look up key details on any 
-   Steam Account that has purchased and played CSGO.
-    
-    Commands:
-     - !csgo : Brings up this message.
-     - !csgo id (profile_name) : Look up based on steam name. Does not work for spaces.
-     - !csgo profile (17digitid) : Look up based on steam id. Requires 17 Digit ID Number.
-`, { code: `none` });
+        return message.channel.send('Please refer back to the help document. _!help_');
     }
-    if (args[0] == "id") {
-        request('http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=' + config.steamKey + '&vanityurl=' + args[1], (error, response, body) => {
-            if (!error && response.statusCode === 200) {
-                const steamID64 = JSON.parse(body).response.steamid;
-                stats(steamID64);
-                return;
+    if (args[0] === 'profile' || args[0] === 'id') {
+        if (args[0] == "profile") {
+            if (args[1].length > 1) {
+                request('http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=' + config.steamKey + '&vanityurl=' + args[1], (error, response, body) => {
+                    if (!error && response.statusCode === 200) {
+                        const steamID64 = JSON.parse(body).response.steamid;
+                        stats(steamID64);
+                        return;
+                    }
+                });
+            } else {
+                return message.channel.send('Please provide me a profile name to lookup.');
             }
-        });
-    }
-    if (args[0] == "profile") {
-        stats(args[1]);
-        return;
-    } else {
-        return message.channel.send(`
-[CSGO HELP]
-    Allows any user to look up key details on any 
-   Steam Account that has purchased and played CSGO.
-    
-    Commands:
-     - !csgo : Brings up this message.
-     - !csgo id (profile_name) : Look up based on steam name. Does not work for spaces.
-     - !csgo profile (17digitid) : Look up based on steam id. Requires 17 Digit ID Number.
-`, { code: `none` });
+        }
+        if (args[0] == "id") {
+            if (args[1].length = 17) {
+                stats(args[1]);
+                return;
+            } else {
+                return message.channel.send('You need to have 17-digit ID Number to provide me with.');
+            }
+        } else {
+            return message.channel.send(`That didn't seem right, why don't you try again?`);
+        }
     }
 }

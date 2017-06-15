@@ -31,7 +31,6 @@ exports.run = (client, message, args) => {
             }
         }
         if (args[0] == "id") {
-            console
             if (args[1].length = 17) {
                 try {
                     message.channel.startTyping();
