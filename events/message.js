@@ -1,6 +1,7 @@
 exports.run = (client, message, args) => {
 
     //message.content shows the content of the message
+    if (message.channel.type == 'dm' || message.channel.type == 'group') return;
     if (message.member.roles.size > 1 ) {
         return;
     } else {
